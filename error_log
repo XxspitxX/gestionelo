@@ -1,0 +1,68 @@
+[22-Nov-2018 20:27:56 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 13
+[22-Nov-2018 20:27:56 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 14
+[22-Nov-2018 20:27:56 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 23
+[22-Nov-2018 20:27:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:24
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 24
+[22-Nov-2018 20:27:58 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 13
+[22-Nov-2018 20:27:58 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 14
+[22-Nov-2018 20:27:58 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 23
+[22-Nov-2018 20:27:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:24
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 24
+[22-Nov-2018 20:28:03 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 13
+[22-Nov-2018 20:28:03 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 14
+[22-Nov-2018 20:28:03 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 23
+[22-Nov-2018 20:28:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:24
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 24
+[22-Nov-2018 20:31:51 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 13
+[22-Nov-2018 20:31:51 UTC] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 14
+[22-Nov-2018 20:31:51 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 23
+[22-Nov-2018 20:31:51 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:24
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 24
+[23-Nov-2018 13:32:28 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 23
+[23-Nov-2018 13:32:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:24
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 24
+[24-Nov-2018 01:07:57 UTC] PHP Warning:  simplexml_load_file(): I/O warning : failed to load external entity &quot;/home/pensemos/public_html/gestionelo/gestionelo/3_Datos\menu.xml&quot; in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 25
+[24-Nov-2018 01:07:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function xpath() on boolean in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php:27
+Stack trace:
+#0 /home/pensemos/public_html/gestionelo/gestionelo/2_Model/index_menu.php(13): CapaDatos->execute_array('menu', 'GetParents', Array, 'Consulta')
+#1 /home/pensemos/public_html/gestionelo/gestionelo/index.php(7): require_once('/home/pensemos/...')
+#2 {main}
+  thrown in /home/pensemos/public_html/gestionelo/gestionelo/3_Datos/CapaDatos.php on line 27
+[24-Nov-2018 02:27:36 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[24-Nov-2018 02:34:05 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[24-Nov-2018 02:34:25 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[24-Nov-2018 02:53:52 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[24-Nov-2018 23:15:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 16:11:38 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 16:12:39 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 16:22:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 16:27:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 16:29:21 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 17:57:17 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[26-Nov-2018 19:23:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[27-Nov-2018 13:28:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[27-Nov-2018 16:05:22 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[27-Nov-2018 16:05:54 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[27-Nov-2018 21:41:55 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[28-Nov-2018 14:16:30 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355
+[28-Nov-2018 14:16:41 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/pensemos/public_html/gestionelo/gestionelo/smartui/UI.php on line 355

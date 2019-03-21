@@ -1,0 +1,63 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+    <SQLS>
+      <SQL id="Mejora_Insert">
+    INSERT INTO Mejora
+           (IdEmpresa,IdTipo,Nombre,DescripcionDetalle,IdEstado,DescripcionCausa,DescripcionSolucion,DescripcionEficacia
+           ,Eficacia,IdUsuarioReporta,ReportadoPor)
+     VALUES
+           (@@IdEmpresa,@IdTipo, '@Nombre', '@DescripcionDetalle',@IdEstado, '@DescripcionCausa','@DescripcionSolucion', '@DescripcionEficacia'
+           ,'@Eficacia',@IdUsuarioReporta,'@ReportadoPor')
+    </SQL>
+    <SQL id="Mejora_Update">
+    UPDATE Mejora
+        SET IdTipo = @IdTipo
+          ,Nombre = '@Nombre'
+          ,DescripcionDetalle = '@DescripcionDetalle'
+          ,IdEstado = @IdEstado
+          ,DescripcionCausa = '@DescripcionCausa'
+          ,DescripcionSolucion = '@DescripcionSolucion'
+          ,DescripcionEficacia = '@DescripcionEficacia'
+          ,Eficacia = '@Eficacia'
+          ,IdUsuarioReporta = @IdUsuarioReporta
+          ,ReportadoPor = '@ReportadoPor'
+      WHERE IdMejora = @IdMejora
+        and IdEmpresa= @@IdEmpresa
+    </SQL>
+    <SQL id="Mejora_Delete">
+       DELETE FROM Mejora WHERE IdMejora = @IdMejora
+    </SQL>
+    <SQL id="Mejora_Get">
+       SELECT Mejora.* 
+        ,(select Nombre from Tipo where Tipo.IdTipo = Mejora.IdTipo) as Tipo
+        ,(select Nombre from Estado where Estado.IdEstado = Mejora.IdEstado) as Estado
+        ,(select Alias from Usuario where Usuario.IdUsuario = Mejora.IdUsuarioReporta) as UsuarioReporta
+       FROM Mejora WHERE IdMejora = @IdMejora
+    </SQL>
+    <SQL id="Mejora_GetAll">
+       SELECT * FROM Mejora
+    </SQL>
+
+    <SQL id="Mejora_GetAllEmpresa">
+     Select * From (
+       SELECT IdMejora,IdTipo, Nombre, IdEstado,IdUsuarioReporta 
+        ,(select Nombre from Tipo where Tipo.IdTipo = Mejora.IdTipo) as Tipo
+        ,(select Nombre from Estado where Estado.IdEstado = Mejora.IdEstado) as Estado
+        ,(select Alias from Usuario where Usuario.IdUsuario = Mejora.IdUsuarioReporta) as UsuarioReporta
+       FROM 
+       Mejora where IdEmpresa= @@IdEmpresa and IdUsuarioReporta = @@IdUsuario
+       and Mejora.IdEstado = @IdEstado 
+       UNION
+	     SELECT M.IdMejora,M.IdTipo, M.Nombre, M.IdEstado,M.IdUsuarioReporta
+        ,(select Nombre from Tipo where Tipo.IdTipo = M.IdTipo) as Tipo
+        ,(select Nombre from Estado where Estado.IdEstado = M.IdEstado) as Estado
+        ,(select Alias from Usuario where Usuario.IdUsuario = M.IdUsuarioReporta) as UsuarioReporta
+         FROM Mejora M,Usuario U,  EmpresaRole ER
+         WHERE 1=1
+	     and U.IdUsuario= @@IdUsuario
+	     and U.IdEmpresaPlantillaRole = ER.IdEmpresaRole 
+	     and NivelAdmin >= 1   and M.IdEmpresa = @@IdEmpresa  
+       and M.IdEstado = @IdEstado
+		) As datos
+		Order by IdTipo, Nombre
+    </SQL> 
+</SQLS>

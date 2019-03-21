@@ -1,0 +1,25 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+    <SQLS>
+        <SQL id="computadores_Insert">
+      INSERT into equipospc (Marca,Referencia,perifericos,Incidencias)
+                  values ('@Marca','@Referencia','@perifericos','@Incidencias')
+      </SQL>
+      <SQL id="computadores_Update">
+        UPDATE equipospc set Marca='@Marca',
+                        Referencia='@Referencia',
+                        perifericos='@perifericos',
+                        Incidencias='@Incidencias'
+                where id='@id'
+      </SQL>
+      <SQL id="computadores_Delete">
+        DELETE FROM equipospc WHERE id = '@id'
+      </SQL>
+      <SQL id="computadores_Get">
+        SELECT * 
+        FROM equipospc WHERE id = '@id'
+      </SQL>
+      <SQL id="computadores_GetAll">
+        SELECT * FROM equipospc
+      </SQL>
+
+</SQLS>

@@ -1,0 +1,25 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+    <SQLS>
+        <SQL id="persona_Insert">
+      INSERT into t_persona (nombre,apellido,email,telefono)
+                  values ('@nombre','@apellido','@email','@telefono')
+      </SQL>
+      <SQL id="persona_Update">
+        UPDATE t_persona set nombre='@nombre',
+                        apellido='@apellido',
+                        email='@email',
+                        telefono='@telefono'
+                where id='@id'
+      </SQL>
+     <SQL id="persona_Delete">
+        DELETE FROM t_persona WHERE id = '@id'
+      </SQL>
+      <SQL id="persona_Get">
+        SELECT * 
+        FROM t_persona WHERE Id = '@id'
+      </SQL>
+      <SQL id="persona_GetAll">
+        SELECT * FROM t_persona
+      </SQL>
+
+</SQLS>

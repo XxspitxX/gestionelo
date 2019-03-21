@@ -1,0 +1,12 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+    <SQL id="Auth">
+	   SELECT  un.Id, E.IdEmpresa, E.IdEmpresaPlantilla , U.Alias, U.IdUsuario, ER.NivelAdmin, un.email
+	   FROM Empresa as E, Usuario as U  , EmpresaRole as ER, AspNetUsers as un
+	   Where E.IdEmpresa = U.IdEmpresa 
+	   and ER.IdEmpresaRole = U.IdEmpresaPlantillaRole
+	   and un.UserName = U.email
+       AND U.Email = '@email'
+       and un.PasswordHash = '@contrasena'
+    </SQL>
+ </SQLS>

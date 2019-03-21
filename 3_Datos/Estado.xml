@@ -1,0 +1,30 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+    <SQL id="Estado_Insert">
+       INSERT INTO Estado(Nombre ,Orden,Activo,IdEmpresa,IdEntidad, EsFinal)
+        VALUES(@Nombre, @Orden,@Activo, @IdEmpresa,@IdEntidad, @EsFinal)
+    </SQL>
+    <SQL id="Estado_Update">
+       UPDATE dbo.Estado SET Nombre = @Nombre, Orden = @Orden, Activo = @Activo, EsFinal = @EsFinal
+        WHERE IdEstado = @IdEstado
+    </SQL>
+    <SQL id="Estado_Delete">
+        DELETE FROM dbo.Estado WHERE IdEstado = @IdEstado
+    </SQL>
+    <SQL id="Estado_Get">
+       SELECT * FROM Estado WHERE IdEstado = @Id
+    </SQL>
+    <SQL id="Estado_GetAll">
+       SELECT * FROM Estado
+    </SQL>
+    <SQL id="Estado_GetAllEmpresaEntidad">
+       SELECT Estado.* FROM Estado, Empresa where Estado.IdEmpresa = Empresa.IdEmpresaPlantilla
+       and Empresa.IdEmpresa=@@IdEmpresa 
+       and Estado.IdEntidad = @IdEntidad 
+    </SQL>
+    <SQL id="Estado_GetAllEntidad">
+       SELECT Estado.* FROM Estado, Empresa where Estado.IdEmpresa = Empresa.IdEmpresaPlantilla
+       and Empresa.IdEmpresa=@@IdEmpresa 
+       and Estado.IdEntidad = @IdEntidad 
+    </SQL>
+</SQLS>

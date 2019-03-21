@@ -1,0 +1,51 @@
+﻿<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+   <SQL id="Usuario_Insert">
+       INSERT INTO Usuario(IdEmpresa ,email,Alias, IdEmpresaPlantillaRole)
+        VALUES(@IdEmpresa, '@email', '@Alias', @IdEmpresaPlantillaRole)
+      
+    </SQL>
+
+    <SQL id="Usuario_DeleteEmpresaEmail">
+      
+       DELETE FROM Usuario WHERE IdEmpresa = @IdEmpresa and email = '@Email'
+      
+    </SQL>
+    
+    <SQL id="Usuario_GetAllEmpresa">
+       SELECT * FROM Usuario where IdEmpresa=@@IdEmpresa  
+    </SQL>
+
+    <SQL id="UsuarioReporta_GetAllEmpresa">
+       SELECT IdUsuario as IdUsuarioReporta, Alias FROM Usuario where IdEmpresa=@@IdEmpresa  
+    </SQL>
+
+    <SQL id="Usuario_GetAllEmpresaEquipo">
+      
+       SELECT U.* FROM Usuario as U where  U.IdEmpresa=@@IdEmpresa 
+       AND U.IdUsuario in
+         (select IdUsuario From EquipoUsuario EU 
+       			where EU.idEquipo in (select idEquipo from EquipoUsuario as EUU where EUU.IdUsuario = @@IdUsuario)
+            and EU.IdEquipo = case @IdEquipo when 0 then EU.IdEquipo else @IdEquipo end 
+            and EU.EsObservador = case @EsObservador when -1 then EU.EsObservador else @EsObservador end 
+          )
+    
+    </SQL>
+
+    <SQL id="Usuario_GetByNetUserName">
+      
+       SELECT NU.Email FROM AspNetUsers as NU
+       where NU.UserName='@UserName'
+      
+    </SQL>
+
+    <SQL id="Usuario_GetByMailEmpresa">
+      
+       SELECT U.* 
+       ,(select Paginainicio From EmpresaRole as ER Where ER.IdEmpresaRole = U.IdEmpresaPlantillaRole) as PaginaInicio
+       ,(select NivelAdmin From EmpresaRole as ER Where ER.IdEmpresaRole = U.IdEmpresaPlantillaRole) as NivelAdmin
+       FROM Usuario as U
+       where U.email = '@Email' and U.IdEmpresa = @IdEmpresa
+      
+    </SQL>
+</SQLS>

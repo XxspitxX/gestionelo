@@ -1,0 +1,109 @@
+﻿<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+  <SQL id="Residente_Get">
+       SELECT * 
+       FROM ActivoResidente WHERE IdActivoResidente = @IdActivoResidente
+    </SQL>
+  
+    <SQL id="Residente_GetAllActivo">
+       SELECT * FROM ActivoResidente where IdActivo = @IdActivo 
+    </SQL> 
+  
+    <SQL id="Residente_Update">
+      UPDATE ActivoResidente
+        SET 
+             Nombres = '@Nombres'
+            ,EsPropietario = @EsPropietario
+            ,EsResidente = @EsResidente
+            ,EsContactoPrincipal = @EsContactoPrincipal
+            ,FechaNacimiento = '@FechaNacimiento'
+            ,Correo = '@Correo'
+            ,Telefono = '@Telefono'
+            ,Vigente = @Vigente
+       WHERE IdActivoResidente = @IdActivoResidente
+    </SQL>   
+   <SQL id="Residente_Insert">
+        INSERT INTO ActivoResidente
+               (Nombres, EsPropietario, EsResidente,EsContactoPrincipal 
+               ,FechaNacimiento ,Correo,Telefono,Vigente,IdActivo
+                )
+         VALUES
+               ('@Nombres' ,'@EsPropietario' ,'@EsResidente' ,'@EsContactoPrincipal'
+               ,'@FechaNacimiento' ,'@Correo' ,'@Telefono' ,'@Vigente', @IdActivo)
+    </SQL> 
+
+    <SQL id="Vehiculo_Get">
+       SELECT * 
+       FROM ActivoVehiculo WHERE IdActivoVehiculo = @IdActivoVehiculo
+    </SQL>
+  
+    <SQL id="Vehiculo_GetAllActivo">
+       SELECT V.*
+       ,(Select Nombre from Tipo where IdTipo = V.IdTipo) Tipo
+       FROM ActivoVehiculo V where IdActivo = @IdActivo
+    </SQL> 
+  
+    <SQL id="Vehiculo_Update">
+      UPDATE ActivoVehiculo
+         SET IdTipo = @IdTipo
+            ,Placa = '@Placa'
+            ,Modelo = '@Modelo'
+            ,Marca = '@Marca'
+            ,Vigente = '@Vigente'
+       WHERE IdActivoVehiculo = @IdActivoVehiculo
+    </SQL>   
+   <SQL id="Vehiculo_Insert">
+      INSERT INTO ActivoVehiculo
+                 (IdActivo ,IdTipo,Placa,Modelo,Marca,Vigente)
+           VALUES
+                 (@IdActivo ,@IdTipo,'@Placa','@Modelo','@Marca', '@Vigente')
+    </SQL>
+    <SQL id="Personal_Get">
+       SELECT * 
+       FROM ActivoPersonal WHERE IdActivoApoyo = @IdActivoApoyo
+    </SQL>
+
+    <SQL id="Personal_GetAllActivo">
+       SELECT P.*
+       ,(Select Nombre from Tipo where IdTipo = P.IdTipoApoyo) TipoApoyo
+       FROM ActivoPersonal P where IdActivo = @IdActivo
+    </SQL>
+
+    <SQL id="Personal_Update">
+      UPDATE ActivoPersonal
+         SET IdActivo = @IdActivo
+            ,Nombres = '@Nombres'
+            ,Identificacion = '@Identificacion'
+            ,IdTipoApoyo = @IdTipoApoyo
+            ,Vigente = '@Vigente'
+       WHERE IdActivoAPoyo = @IdActivoApoyo
+    </SQL>
+    <SQL id="Personal_Insert">
+      INSERT INTO ActivoPersonal
+                 (IdActivo,Nombres,Identificacion,IdTipoApoyo, Vigente)
+           VALUES
+                 (@IdActivo ,'@Nombres','@Identificacion',@IdTipoApoyo,'@Vigente')
+    </SQL>
+    <SQL id="Mascota_Get">
+       SELECT * 
+       FROM ActivoMascota WHERE IdActivoMascota = @IdActivoMascota
+    </SQL>
+
+    <SQL id="Mascota_GetAllActivo">
+       SELECT M.* FROM ActivoMascota M where IdActivo = @IdActivo
+    </SQL>
+
+    <SQL id="Mascota_Update">
+      UPDATE ActivoMascota
+         SET IdActivo = @IdActivo
+            ,Raza = '@Raza'
+            ,Cantidad = @Cantidad
+            ,Vigente = '@Vigente' 
+       WHERE IdActivoMascota = @IdActivoMascota
+    </SQL>
+    <SQL id="Mascota_Insert">
+      INSERT INTO ActivoMascota (IdActivo ,Raza ,Cantidad, vigente)
+           VALUES (@IdActivo ,'@Raza' ,@Cantidad, '@vigente')
+    </SQL>    
+    
+ </SQLS>

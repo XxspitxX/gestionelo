@@ -1,0 +1,34 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+    <SQL  id="Insert">
+		INSERT INTO dbo.Empresa (Nombre,Activo, IdEmpresaPlantilla) VALUES (@Nombre, @Activo, @IdEmpresaPlantilla)
+    </SQL>
+    <SQL  id="Update">
+		UPDATE Empresa SET Nombre = @Nombre, Activo = @Activo WHERE IdEmpresa = @IdEmpresa
+    </SQL>
+    <SQL  id="Delete">
+		DELETE FROM dbo.Empresa WHERE IdEmpresa = @IdEmpresa
+    </SQL>	
+    <SQL  id="Get">
+		SELECT E.* 
+       ,(select email from Usuario where Usuario.IdUsuario = E.IdUsuarioAdministrador) as Email
+       FROM Empresa as E 
+       WHERE IdEmpresa = @Id
+    </SQL>	
+    <SQL id="GetAll">
+       SELECT * FROM Empresa
+    </SQL>	
+    <SQL id="GetAllEmail">
+       SELECT E.* FROM Empresa as E, Usuario as U  Where E.IdEmpresa = U.IdEmpresa 
+       AND U.Email = '@@Email'
+       order by orden
+    </SQL>
+
+    <SQL id="MaxId">
+      select max(IdEmpresa) as IdEmpresa from Empresa
+    </SQL>
+    <SQL id="GetAllPlantilla">
+       SELECT E.* FROM Empresa as E  Where 1=1
+       AND E.EsPlantilla = '1'
+    </SQL>	
+</SQLS>

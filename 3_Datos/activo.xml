@@ -1,0 +1,52 @@
+﻿<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+    <SQL id="Insert">
+        INSERT INTO Activo (IdEmpresa,IdTipo, Nombre,Descripcion,Alias,IdActivoPadre,IdEstado,EsReservable, EsHabitable, IdUsuarioHabitable)
+        VALUES (@@IdEmpresa,@IdTipo,@Nombre,@Descripcion, @Alias,@IdActivoPadre,@IdEstado,@EsReservable, @EsHabitable, @IdUsuarioHabitable)
+    </SQL>
+    <SQL id="Update">
+        UPDATE Activo SET Nombre = @Nombre, Descripcion = @Descripcion, Alias = @Alias
+           , IdEstado = @IdEstado, IdTipo = @IdTipo 
+           , EsReservable = @EsReservable, EsHabitable = @EsHabitable, IdUsuarioHabitable = @IdUsuarioHabitable
+        WHERE IdActivo = @IdActivo
+    </SQL>
+    <SQL id="Delete">
+       DELETE FROM Activo WHERE IdActivo = @IdActivo
+    </SQL>
+    <SQL id="Get">
+       SELECT * FROM Activo WHERE IdActivo = @IdActivo
+    </SQL>
+    <SQL id="GetAll">
+       SELECT * FROM Activo
+    </SQL>
+    <SQL id="GetParents">
+       SELECT * FROM Activo WHERE IdActivoPadre IS NULL  and IdEmpresa = @@IdEmpresa
+       Order by Orden
+    </SQL>
+    <SQL id="GetChildren">
+       SELECT * FROM Activo WHERE IdActivoPadre = @IdActivo Order by Orden
+    </SQL>
+
+    <SQL id="GetParentsFiltro">
+       SELECT IdActivo, IdEmpresa, IdTipo, Nombre, Descripcion, Alias, Null as IdActivoPadre, IdEstado, Orden
+       FROM Activo WHERE Nombre like @Nombre 
+       and IdEmpresa = @@IdEmpresa
+       Order by Orden
+    </SQL>
+    
+    <SQL id="GetAllUsuario">
+       Select * From (
+       SELECT *
+       FROM Activo 
+       WHERE EsHabitable = '1' AND IdUsuarioHabitable = @@IdUsuario
+       UNION
+	     SELECT A.*
+         FROM Activo A,Usuario U,  EmpresaRole ER
+         WHERE EsHabitable = '1'
+	     and U.IdUsuario= @@IdUsuario
+	     and U.IdEmpresaPlantillaRole = ER.IdEmpresaRole 
+	     and NivelAdmin >= 1   and A.IdEmpresa = @@IdEmpresa    
+       ) as datos
+       Order by Nombre
+    </SQL>   
+ </SQLS>

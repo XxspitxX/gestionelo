@@ -1,0 +1,26 @@
+﻿<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+ <SQL id="Tipo_Insert">
+       INSERT INTO Tipo(Nombre ,Orden,Activo,IdEmpresa,IdEntidad)
+        VALUES(@Nombre, @Orden,@Activo, @@IdEmpresa,@IdEntidad)
+    </SQL>
+    <SQL id="Tipo_Update">
+       UPDATE dbo.Tipo SET Nombre = @Nombre, Orden = @Orden, Activo = @Activo
+        WHERE IdTipo = @IdTipo
+    </SQL>
+    <SQL id="Tipo_Delete">
+         DELETE FROM dbo.Tipo WHERE IdTipo = @IdTipo
+    </SQL>
+    <SQL id="Tipo_Get">
+       SELECT * FROM Tipo WHERE IdTipo = @IdTipo
+    </SQL>
+    <SQL id="Tipo_GetAll">
+       SELECT * FROM Tipo
+    </SQL>
+
+    <SQL id="Tipo_GetAllEntidad">
+       SELECT Tipo.* FROM Tipo , Empresa where Tipo.IdEmpresa = Empresa.IdEmpresaPlantilla
+       and  Empresa.idEmpresa = @@IdEmpresa 
+       and Tipo.IdEntidad = @IdEntidad  
+    </SQL>
+</SQLS>

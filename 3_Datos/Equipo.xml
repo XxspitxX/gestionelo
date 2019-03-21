@@ -1,0 +1,63 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+     <SQL id="Equipo_Insert">
+    INSERT INTO Equipo(Nombre,Descripcion,Activo,IdEmpresa)
+     VALUES (@Nombre,@Descripcion,@Activo,@@IdEmpresa)
+      
+    </SQL>
+    <SQL id="Equipo_Update">
+      UPDATE Equipo
+      SET Nombre = @Nombre,Descripcion = @Descripcion, Activo= @Activo
+        WHERE IdEquipo = @IdEquipo
+      
+    </SQL>
+    <SQL id="Equipo_Delete">
+       DELETE FROM Equipo WHERE IdEquipo = @IdEquipo
+      
+    </SQL>
+    <SQL id="Equipo_Get">
+       SELECT * FROM Equipo WHERE IdEquipo = @IdEquipo
+      
+    </SQL>
+    <SQL id="Equipo_GetAll">
+       SELECT * FROM Equipo
+      
+    </SQL>
+
+    <SQL id="Equipo_GetAllEmpesa">
+       SELECT * FROM Equipo where IdEmpresa= @@IdEmpresa 
+      
+    </SQL>
+
+    <SQL id="Equipo_GetAllUsuario">
+       SELECT E.* FROM Equipo as E, EquipoUsuario as EU where IdEmpresa= @@IdEmpresa 
+       and E.IdEquipo = EU.IdEquipo
+       AND EU.IdUsuario = @@IdUsuario
+      
+    </SQL>
+
+    <SQL id="EquipoUsuario_Insert">
+    INSERT INTO EquipoUsuario(IdEquipo,IdUsuario, EsObservador)
+     VALUES (@IdEquipo,@IdUsuario,@EsObservador)
+      
+    </SQL>
+
+    <SQL id="EquipoUsuario_Delete">
+       DELETE FROM EquipoUsuario WHERE IdEquipoUsuario = @IdEquipoUsuario
+      
+    </SQL>
+    <SQL id="EquipoUsuario_Get">
+       SELECT * FROM EquipoUsuario WHERE IdEquipoUsuario = @IdEquipoUsuario
+      
+    </SQL>
+    <SQL id="EquipoUsuario_GetAll">
+       SELECT * FROM EquipoUsuario
+      
+    </SQL>
+
+    <SQL id="EquipoUsuario_GetAllEquipo">
+       SELECT EU.*, U.Alias +':' +  U.email as Alias FROM EquipoUsuario as EU, Usuario as U where EU.IdUsuario = U.IdUsuario
+       and U.IdEmpresa= @@IdEmpresa and EU.IdEquipo = @IdEquipo
+      
+    </SQL>  
+</SQLS>

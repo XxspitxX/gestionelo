@@ -1,0 +1,19 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+    <SQL  id="GetParents">
+		    SELECT DISTINCT ME.* 
+		    FROM menus ME, menuroles MR, AspNetRoles RO, Usuario U, EmpresaRole ER
+		    WHERE
+		     ME.IdMenu = MR.IdMenu AND MR.RoleId = RO.Id and RO.Id = ER.IdRole and ER.IdEmpresaRole = U.IdEmpresaPlantillaRole
+		     AND U.email =  '@@Email' and U.IdEmpresa = @@IdEmpresa and IdMenuPadre IS NULL 
+		     order by orden
+    </SQL>
+    <SQL  id="GetChildren">
+		    SELECT DISTINCT ME.* 
+		    FROM menus ME, menuroles MR, AspNetRoles RO, Usuario U, EmpresaRole ER
+		    WHERE
+		     ME.IdMenu = MR.IdMenu AND MR.RoleId = RO.Id and RO.Id = ER.IdRole and ER.IdEmpresaRole = U.IdEmpresaPlantillaRole
+		     AND U.email =  '@@Email' and U.IdEmpresa = @@IdEmpresa and IdMenuPadre = @IdMenuPadre
+		     order by orden
+    </SQL>
+	</SQLS>

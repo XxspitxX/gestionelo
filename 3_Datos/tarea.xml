@@ -1,0 +1,167 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+ <SQLS>
+     <SQL id="Tarea_Insert">
+      INSERT INTO Tarea(IdEmpresa,IdTipo,Titulo,Descripcion ,PlanFechaInicio ,PlanFechaFinal,PlanFechaAviso,RealFechaInicio,RealFechaFinal,IdTareaPadre,IdEstado,IdResponsable
+           ,Avance,EsGrupo,EsHito,Dependencias,PlanHoras,PlanMinutos,IdObjeto,IdObjetoTipo)
+      VALUES
+           (@@IdEmpresa,  @IdTipo, '@Titulo','@Descripcion','@PlanFechaInicio','@PlanFechaFinal','@PlanFechaAviso','@RealFechaInicio', '@RealFechaFinal',@IdTareaPadre,@IdEstado,@IdResponsable
+           ,@Avance,'@EsGrupo','@EsHito',@Dependencias,@PlanHoras,@PlanMinutos,@IdObjeto,@IdObjetoTipo)
+      
+    </SQL>
+    <SQL id="Tarea_InsertDate">
+      
+      INSERT INTO Tarea(IdEmpresa,IdTipo,Titulo,Descripcion ,PlanFechaInicio ,PlanFechaFinal,PlanFechaAviso,IdEstado, IdObjeto, IdObjetoTipo, IdResponsable, className, DiaCompleto)
+      VALUES
+           (@@IdEmpresa,  @IdTipo, '@Titulo','@Descripcion','@PlanFechaInicio','@PlanFechaFinal','@PlanFechaAviso',@IdEstado,@IdObjeto, @IdObjetoTipo, @IdResponsable, '@className', '@DiaCompleto')
+      
+    </SQL>
+    <SQL id="Tarea_MaxId">
+      
+      select max(IdTarea) as IdTarea from Tarea
+      
+    </SQL>
+    <SQL id="Tarea_Update">
+      
+       UPDATE Tarea 
+        SET IdTipo = @IdTipo, Titulo = '@Titulo',Descripcion = '@Descripcion'
+            ,PlanFechaInicio = '@PlanFechaInicio',PlanFechaFinal = '@PlanFechaFinal'
+            ,PlanFechaAviso = '@PlanFechaAviso',RealFechaInicio = '@RealFechaInicio',RealFechaFinal = '@RealFechaFinal',IdTareaPadre = '@IdTareaPadre'
+      ,IdEstado = @IdEstado,IdResponsable = @IdResponsable,Avance = @Avance,EsGrupo = '@EsGrupo',EsHito = 'EsHito',Dependencias = '@Dependencias'
+      ,PlanHoras = @PlanHoras,PlanMinutos = @PlanMinutos,IdObjeto = @IdObjeto,IdObjetoTipo = @IdObjetoTipo
+      WHERE IdTarea = @IdTarea and IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+    <SQL id="Tarea_UpdateDate">
+       UPDATE Tarea 
+            SET PlanFechaInicio = '@PlanFechaInicio',PlanFechaFinal = '@PlanFechaFinal'
+            ,PlanFechaAviso = '@PlanFechaAviso'
+            , DiaCompleto = '@DiaCompleto'
+       WHERE IdTarea = @IdTarea and IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+    <SQL id="Tarea_UpdateAccion">
+      
+       UPDATE Tarea SET Titulo = @Titulo,Descripcion = @Descripcion
+      ,IdEstado = @IdEstado, IdResponsable = @IdResponsable, Avance = @Avance
+      , PlanFechaInicio= '@PlanFechaInicio', PlanFechaFinal = '@PlanFechaFinal', DiaCompleto = '@DiaCompleto'
+       WHERE IdTarea = @IdTarea and IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+    <SQL id="Tarea_Delete">
+      
+        DELETE FROM Tarea WHERE IdTarea = @IdTarea and IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+    <SQL id="Tarea_Get">
+      
+       SELECT * FROM Tarea WHERE IdTarea = @IdTarea and IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+    
+    <SQL id="Tarea_GetByIdAccion">
+      
+       SELECT T.* FROM Tarea as T, TareaAccion as TA where T.IdTarea = TA.IdTarea
+       and IdAccion= @IdAccion and T.IdEmpresa = @@IdEmpresa
+      
+    </SQL>
+
+     
+    <SQL id="Tarea_GetAllFilters">
+      SELECT T.IdTarea as id, t.PlanFechaInicio as start, t.PlanFechaFinal as end
+        ,t.Titulo as title, t.Descripcion as description, IF(t.DiaCompleto = "1" , true, false) as allDay
+        ,t.className as className, true as editable
+        FROM Tarea as T, Estado as E where T.IdEstado = E.IdEstado
+	   and E.EsFinal = (case @EsFinal when 0 then E.EsFinal else @EsFinal end)
+       and T.IdResponsable = (case @IdResponsable when 0 then T.IdResponsable else @IdResponsable end)
+       and T.IdObjeto = (case @IdObjeto when 0 then T.IdObjeto  else @IdObjeto end)
+       and T.IdEmpresa = @@IdEmpresa 
+	    and T.IdResponsable in
+         (select IdUsuario From EquipoUsuario EU 
+       			where EU.idEquipo in (select idEquipo from EquipoUsuario as EUU where EUU.IdUsuario = @@IdUsuario)
+            and EU.IdEquipo = case @IdEquipo when 0 then EU.IdEquipo else @IdEquipo end 
+            and EU.EsObservador = case @EsObservador when -1 then EU.EsObservador else @EsObservador end 
+          )
+    
+    </SQL>
+    
+    <SQL id="Tarea_GetAllFiltersAcciones">
+    SELECT TA.IdAccion as  IdTarea, T.Titulo, TA.Descripcion, FechaInicialAccion  as PlanFechaInicio,  TA.FechaFinalAccion as PlanFechaFinal
+        ,0 as allDay, T.className, T.color, E.EsFinal , IdEjecutor as IdResponsable
+     FROM Tarea as T, Estado as E, TareaAccion as TA where T.IdEstado = E.IdEstado and T.IdTarea = TA.IdTarea
+	   and TA.EsAutomatica = 0
+	   and E.EsFinal = case @EsFinal when 0 then E.EsFinal else @EsFinal end
+       and T.IdResponsable = case @IdResponsable when 0 then T.IdResponsable else @IdResponsable end
+       and T.IdObjeto = case @IdObjeto when 0 then T.IdObjeto  else @IdObjeto end
+       and T.IdEmpresa = @IdEmpresa 
+	    and T.IdResponsable in
+         (select IdUsuario From EquipoUsuario EU 
+       			where EU.idEquipo in (select idEquipo from EquipoUsuario as EUU where EUU.IdUsuario = @IdUsuario)
+            and EU.IdEquipo = case @IdEquipo when 0 then EU.IdEquipo else @IdEquipo end 
+            and EU.EsObservador = case @EsObservador when -1 then EU.EsObservador else @EsObservador end 
+          )
+    
+    </SQL>
+    <SQL id="Tarea_GetAll">
+       SELECT * FROM Tarea
+    </SQL>
+
+    <SQL id="TareaAccion_Insert">
+      
+      INSERT INTO TareaAccion
+           (IdTarea,IdResponsable,IdEstado,PlanFechaAviso,Descripcion,Avance, IdEjecutor, FechaFinalAccion,FechaInicialAccion, EsAutomatica)
+      VALUES
+           (@IdTarea,@IdResponsable,@IdEstado,'@PlanFechaAviso','@Descripcion',@Avance,@IdEjecutor, '@FechaFinalAccion'
+             ,'@FechaInicialAccion', '@EsAutomatica')
+      
+    </SQL>
+    <SQL id="TareaAccion_Update">
+       UPDATE TareaAccion
+       SET IdTarea = @IdTarea,IdResponsable = @IdResponsable,IdEstado = @IdEstado
+           ,FechaAviso = '@FechaAviso',Descripcion = '@Descripcion',Avance = @Avance
+           ,FechaFinalAccion = '@FechaFinalAccion', FechaInicialAccion = '@FechaInicialAccion'
+       WHERE IdAccion = @IdAccion
+      
+    </SQL>
+    <SQL id="TareaAccion_UpdateDate">
+       UPDATE TareaAccion
+       SET FechaInicialAccion = '@FechaInicialAccion',FechaFinalAccion = '@FechaFinalAccion'
+       WHERE IdAccion = @IdAccion
+      
+    </SQL>
+    <SQL id="TareaAccion_UpdateAccion">
+       UPDATE TareaAccion
+       SET  IdEjecutor = @IdEjecutor
+           ,Descripcion = '@Descripcion'
+        WHERE IdAccion = @IdAccion
+      
+    </SQL>
+
+    <SQL id="TareaAccion_Delete">
+        DELETE FROM TareaAccion WHERE IdAccion = @IdAccion
+      
+    </SQL>
+    <SQL id="TareaAccion_Get">
+       SELECT * FROM TareaAccion WHERE IdAccion = @IdAccion
+      
+    </SQL>
+    <SQL id="TareaAccion_GetAll">
+       SELECT * FROM TareaAccion
+      
+    </SQL>
+
+    <SQL id="TareaAccion_GetAllTarea">
+       SELECT TA.* 
+       ,(Select Alias from Usuario as U where U.IdUsuario = TA.IdEjecutor) as Alias
+       FROM TareaAccion as TA where IdTarea = @IdTarea
+      
+    </SQL>
+
+    <SQL id="TareaAccion_GetAllObjeto">
+       SELECT TA.* 
+       ,(Select Alias from Usuario as U where U.IdUsuario = TA.IdEjecutor) as Alias
+       FROM TareaAccion as TA , Tarea As T
+       where 1=1
+       and TA.IdTarea = T.IdTarea
+       and T.IdObjeto = @IdObjeto  and T.IdObjetoTipo = @IdObjetoTipo
+    </SQL>
+</SQLS>
